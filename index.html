@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>'THE' GHEE STORE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff; /* White background */
+      color: #000000; /* Black text */
+    }
+    header {
+      background-color: #373636; /* Black header */
+      color: #ffffff; /* White text */
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      width: 100px; /* Adjust width as needed */
+      height: auto; /* Maintain aspect ratio */
+      margin: 0 auto 20px; /* Center logo and add space below */
+      display: block; /* Ensure logo is centered */
+    }
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #000; /* Black border */
+      border-radius: 5px;
+      background-color: #fff; /* White background */
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: calc(100% - 22px); /* Subtract padding and borders */
+      padding: 10px;
+      margin: 0 0 10px; /* Add space between inputs */
+      border: 1px solid #000; /* Black border */
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    input[type="submit"],
+    button {
+      width: 100%;
+      background-color: #f2cc0d; /* Yellow button */
+      color: #fff; /* White text */
+      padding: 12px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover,
+    button:hover {
+      background-color: #020202; /* Darker black on hover */
+    }
+    footer {
+      background-color: #ffffff; /* White footer */
+      color: #0a0a0a; /* Dark text */
+      text-align: center;
+      padding: 20px 0;
+    }
+    .about-us {
+      background-color: #373636; /* Black background */
+      color: #ffffff; /* White text */
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .confirmation {
+      background-color: #f2cc0d; /* Yellow background */
+      color: #000000; /* Black text */
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="c:\Users\johan\Downloads\OIP (1).jpeg" alt="Your Ghee Store Logo">
+  <h1>PAVIZHAM GHEE STORE</h1>
+  <p>www.PAVIZHAMghee.com</p>
+</header>
+
+<form action="https://formspree.io/f/mjvnzyby" method="POST">
+  <h2>Place Your Order</h2>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="whatsapp">WhatsApp Number:</label>
+  <input type="tel" id="whatsapp" name="whatsapp" required pattern="[0-9]{10}" title="Please enter a 10-digit number">
+  
+  <label for="address">Address:</label>
+  <textarea id="address" name="address" rows="4" required></textarea>
+  
+  <label for="quantity">Quantity:</label>
+  <select id="quantity" name="quantity" required onchange="submitOrder()">
+    <option value="">Select Quantity</option>
+    <option value="1 liter">1 Liter</option>
+    <option value="750ml">750 ml</option>
+  </select>
+  
+  <button type="submit">Place Order</button>
+  <p id="totalPrice" class="result" style="display: none;">Total Price will be displayed here.</p>
+</form>
+
+<div class="about-us">
+  <h2>About Us</h2>
+  <p>We are dedicated to providing the finest quality ghee to our customers. Our ghee is made from the purest ingredients and follows traditional methods to ensure authenticity and taste.</p>
+</div>
+
+<footer>
+  <p>&copy; 2024 Your Ghee Store. All rights reserved.</p>
+</footer>
+
+<script>
+  function submitOrder() {
+    var quantity = document.getElementById("quantity").value;
+    var price = calculatePrice(quantity);
+    if (price !== null) {
+      document.getElementById("totalPrice").style.display = "block";
+      document.getElementById("totalPrice").innerHTML = "Total Price: " + price + " INR";
+    }
+  }
+
+  function calculatePrice(quantity) {
+    quantity = quantity.toLowerCase();
+    var pricePerLiter = 600;
+    var price = 0;
+
+    if (quantity === "1 liter") {
+      price = pricePerLiter;
+    } else if (quantity === "750ml") {
+      price = Math.round((pricePerLiter / 4) * 3);
+    } else {
+      return null; // Return null for invalid quantity
+    }
+
+    return price;
+  }
+</script>
+
+</body>
+</html>
